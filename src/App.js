@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
 
-function App() {
+const App = () => {
+
+  const ref = useRef()
+
+  // El ref hace que puedas acceder a los elementos de html o css del div
+  const click = () => {
+    console.log(ref.current.clientHeight);
+    ref.current.innerHTML = 'Chanchito feliz'
+  }
+
+  const inputRef = useRef()
+
+  const focus = () => {
+    inputRef.current.focus()
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input ref={inputRef} />
+      {/* Cuando pulsamos el boton se selecciona el input */}
+      <button onClick={focus} >Focus</button>
+      {/* Cuando pulsamos el div se cambia su contenido escrito en html */}
+      <div onClick={click} ref={ref} >Lala</div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
